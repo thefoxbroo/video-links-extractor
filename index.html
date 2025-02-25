@@ -17,32 +17,19 @@
     <details id="howToUse">
       <summary>How to Use</summary>
       <div class="instructions">
-        <p>
-          1. Log in to your account on 
-          <a href="https://bondipathshala.com.bd" target="_blank">bondipathshala.com.bd</a> and navigate to your video page.
-        </p>
-        <p>
-          2. Click the bookmarklet (which will store the page’s HTML and redirect you here).
-        </p>
-        <p>
-          3. Your video links will be automatically extracted. If not, you can paste the page source into the textarea and click "View Video Links".
-        </p>
-        <p>
-          4. If you check "Include Booklet Automatically," a predefined booklet will be appended to your output when sharing or exporting.
-        </p>
+        <p>1. Log in to your account and navigate to your video page.</p>
+        <p>2. Click the bookmarklet (provided below) to automatically capture the page source.</p>
+        <p>3. The video links will be extracted and displayed below.</p>
+        <p>4. Use the action buttons to open, share, copy, or export the links.</p>
       </div>
     </details>
     
     <!-- Input Section -->
     <section id="inputSection">
       <textarea id="htmlInput" placeholder="Paste the full page HTML here"></textarea>
-      <div class="options">
-        <label>
-          <input type="checkbox" id="includeBooklet" />
-          Include Booklet Automatically
-        </label>
+      <div class="btn-container">
+        <button id="extractBtn" class="btn">View Video Links</button>
       </div>
-      <button id="extractBtn" class="btn">View Video Links</button>
     </section>
     
     <!-- Message Display -->
@@ -56,6 +43,7 @@
         <button id="shareBtn" class="btn">Share Video Links</button>
         <button id="copyBtn" class="btn">Copy URLs</button>
         <button id="exportBtn" class="btn">Export</button>
+        <button id="addBookletBtn" class="btn">Add to Bookmark</button>
       </div>
     </section>
   </main>
