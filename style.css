@@ -30,18 +30,23 @@ main {
   margin: auto;
 }
 
-#instructions {
+/* How To Use Section (using <details>) */
+details {
   margin-bottom: 20px;
-  text-align: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
 }
 
-#instructions a {
-  color: #2575fc;
-  text-decoration: none;
+details summary {
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
 }
 
-#instructions a:hover {
-  text-decoration: underline;
+.instructions p {
+  margin: 8px 0;
 }
 
 #inputSection {
@@ -58,6 +63,15 @@ main {
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 10px;
+}
+
+.options {
+  margin-bottom: 10px;
+}
+
+.options label {
+  font-size: 14px;
+  color: #555;
 }
 
 .btn {
