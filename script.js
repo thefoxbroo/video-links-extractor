@@ -1,18 +1,15 @@
 // script.js
 
+// When the page loads, check if window.name has been populated by the bookmarklet.
 window.addEventListener("DOMContentLoaded", () => {
-  // Check if window.name has been populated by the bookmarklet
   if (window.name && window.name.trim() !== "") {
     const extractedHtml = window.name;
-    // Optionally, populate the textarea for debugging/visibility:
-    document.getElementById("htmlInput").value = extractedHtml;
-    // Process the HTML to extract video links
+    document.getElementById("htmlInput").value = extractedHtml; // Optional: show HTML in textarea.
     extractVideoLinks(extractedHtml);
-    // Clear window.name so it doesn't reprocess on subsequent loads
-    window.name = "";
+    window.name = ""; // Clear window.name so it doesn't reprocess on subsequent loads.
   }
   
-  // Attach click event for manual extraction if needed
+  // Attach click event for manual extraction.
   document.getElementById("extractBtn").addEventListener("click", () => {
     const htmlInput = document.getElementById("htmlInput").value.trim();
     if (!htmlInput) {
@@ -83,14 +80,14 @@ function setupActionButtons(videos) {
 
   document.getElementById("shareBtn").onclick = () => {
     let videoText = videos
-      .map(
-        (video) =>
-          `${video.order}. ${video.subject}: https://www.youtube.com/watch?v=${video.id}`
-      )
+      .map((video) => `${video.order}. ${video.subject}: https://www.youtube.com/watch?v=${video.id}`)
       .join("\n");
+    // If a booklet has been added via the bookmarklet option, append it.
+    if (window.bookletText) {
+      videoText += "\n\n" + window.bookletText;
+    }
     if (navigator.share) {
-      navigator
-        .share({
+      navigator.share({
           title: "Video Links",
           text: videoText,
         })
@@ -106,19 +103,18 @@ function setupActionButtons(videos) {
     const videoUrls = videos
       .map((video) => `https://www.youtube.com/watch?v=${video.id}`)
       .join("\n");
-    navigator.clipboard
-      .writeText(videoUrls)
+    navigator.clipboard.writeText(videoUrls)
       .then(() => alert("Video URLs copied to clipboard!"))
       .catch((err) => console.error("Error copying URLs: ", err));
   };
 
   document.getElementById("exportBtn").onclick = () => {
     let videoText = videos
-      .map(
-        (video) =>
-          `${video.order}. ${video.subject}: https://www.youtube.com/watch?v=${video.id}`
-      )
+      .map((video) => `${video.order}. ${video.subject}: https://www.youtube.com/watch?v=${video.id}`)
       .join("\n");
+    if (window.bookletText) {
+      videoText += "\n\n" + window.bookletText;
+    }
     let format = prompt("Enter export format (text/pdf):", "text");
     if (format) {
       format = format.toLowerCase();
@@ -140,5 +136,12 @@ function setupActionButtons(videos) {
         alert("Unsupported format. Please enter 'text' or 'pdf'.");
       }
     }
+  };
+
+  // "Add to Bookmark" button: show the bookmarklet code so the user can add it to their bookmarks.
+  document.getElementById("addBookletBtn").onclick = () => {
+    const bookmarkletCode = "javascript:(function(){ window.name = document.documentElement.outerHTML; window.location = 'https://thefoxbroo.github.io/video-links-extractor/'; })();";
+    // Display the code in a prompt so the user can copy it.
+    prompt("Right-click, copy the code below, and add it to your bookmarks bar:", bookmarkletCode);
   };
 }
