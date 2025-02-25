@@ -13,19 +13,35 @@
   </header>
   
   <main>
-    <!-- Instructions Section -->
-    <section id="instructions">
-      <p>
-        To extract video links, log in to your account on 
-        <a href="https://bondipathshala.com.bd" target="_blank">bondipathshala.com.bd</a> and navigate to your video page.
-        Then click the bookmarklet to automatically transfer the page source to this site.
-        Alternatively, copy and paste the full HTML source below.
-      </p>
-    </section>
+    <!-- How to Use Dropdown -->
+    <details id="howToUse">
+      <summary>How to Use</summary>
+      <div class="instructions">
+        <p>
+          1. Log in to your account on 
+          <a href="https://bondipathshala.com.bd" target="_blank">bondipathshala.com.bd</a> and navigate to your video page.
+        </p>
+        <p>
+          2. Click the bookmarklet (which will store the page’s HTML and redirect you here).
+        </p>
+        <p>
+          3. Your video links will be automatically extracted. If not, you can paste the page source into the textarea and click "View Video Links".
+        </p>
+        <p>
+          4. If you check "Include Booklet Automatically," a predefined booklet will be appended to your output when sharing or exporting.
+        </p>
+      </div>
+    </details>
     
     <!-- Input Section -->
     <section id="inputSection">
       <textarea id="htmlInput" placeholder="Paste the full page HTML here"></textarea>
+      <div class="options">
+        <label>
+          <input type="checkbox" id="includeBooklet" />
+          Include Booklet Automatically
+        </label>
+      </div>
       <button id="extractBtn" class="btn">View Video Links</button>
     </section>
     
