@@ -4,9 +4,9 @@
 window.addEventListener("DOMContentLoaded", () => {
   if (window.name && window.name.trim() !== "") {
     const extractedHtml = window.name;
-    document.getElementById("htmlInput").value = extractedHtml; // Optional: show HTML in textarea.
+    document.getElementById("htmlInput").value = extractedHtml; // Optionally show HTML in textarea.
     extractVideoLinks(extractedHtml);
-    window.name = ""; // Clear window.name so it doesn't reprocess on subsequent loads.
+    window.name = ""; // Clear window.name so it doesn't reprocess.
   }
   
   // Attach click event for manual extraction.
@@ -18,6 +18,14 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     showMessage("Extracting video links...", false);
     extractVideoLinks(htmlInput);
+  });
+  
+  // Attach click event for the "Add to Bookmark" button.
+  document.getElementById("bookmarkletBtn").addEventListener("click", () => {
+    // The bookmarklet code that fetches the source code automatically.
+    const bookmarkletCode = "javascript:(function(){ window.name = document.documentElement.outerHTML; window.location = 'https://thefoxbroo.github.io/video-links-extractor/'; })();";
+    // Show the code in a prompt for the user to copy.
+    prompt("Right-click and copy the following bookmarklet code, then add it to your bookmarks bar:", bookmarkletCode);
   });
 });
 
@@ -82,10 +90,6 @@ function setupActionButtons(videos) {
     let videoText = videos
       .map((video) => `${video.order}. ${video.subject}: https://www.youtube.com/watch?v=${video.id}`)
       .join("\n");
-    // If a booklet has been added via the bookmarklet option, append it.
-    if (window.bookletText) {
-      videoText += "\n\n" + window.bookletText;
-    }
     if (navigator.share) {
       navigator.share({
           title: "Video Links",
@@ -112,9 +116,6 @@ function setupActionButtons(videos) {
     let videoText = videos
       .map((video) => `${video.order}. ${video.subject}: https://www.youtube.com/watch?v=${video.id}`)
       .join("\n");
-    if (window.bookletText) {
-      videoText += "\n\n" + window.bookletText;
-    }
     let format = prompt("Enter export format (text/pdf):", "text");
     if (format) {
       format = format.toLowerCase();
@@ -136,12 +137,5 @@ function setupActionButtons(videos) {
         alert("Unsupported format. Please enter 'text' or 'pdf'.");
       }
     }
-  };
-
-  // "Add to Bookmark" button: show the bookmarklet code so the user can add it to their bookmarks.
-  document.getElementById("addBookletBtn").onclick = () => {
-    const bookmarkletCode = "javascript:(function(){ window.name = document.documentElement.outerHTML; window.location = 'https://thefoxbroo.github.io/video-links-extractor/'; })();";
-    // Display the code in a prompt so the user can copy it.
-    prompt("Right-click, copy the code below, and add it to your bookmarks bar:", bookmarkletCode);
   };
 }
