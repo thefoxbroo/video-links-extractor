@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Video Links Extractor</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Include jsPDF from CDN for PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Video Links Extractor</h1>
+  </header>
+  
+  <main>
+    <!-- (Optional) Instructions if no auto HTML provided -->
+    <section id="instructions">
+      <p>
+        If you are not using the bookmarklet, paste the page HTML below.
+      </p>
+    </section>
+    
+    <!-- Text area for HTML input -->
+    <section id="inputSection">
+      <textarea id="htmlInput" placeholder="Paste the full page HTML here"></textarea>
+      <button id="extractBtn" class="btn">View Video Links</button>
+    </section>
+    
+    <!-- Section for messages -->
+    <div id="message"></div>
+    
+    <!-- Section for results -->
+    <section id="resultsSection" style="display:none;">
+      <ul id="videoLinksList"></ul>
+      <div class="button-group">
+        <button id="openAllBtn" class="btn">Open All Videos</button>
+        <button id="shareBtn" class="btn">Share Video Links</button>
+        <button id="copyBtn" class="btn">Copy URLs</button>
+        <button id="exportBtn" class="btn">Export</button>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    Developed By Th
+  </footer>
+  
+  <script src="script.js"></script>
+</body>
+</html>
