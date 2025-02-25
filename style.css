@@ -30,7 +30,7 @@ main {
   margin: auto;
 }
 
-/* How To Use Section (using <details>) */
+/* How To Use Dropdown */
 details {
   margin-bottom: 20px;
   background-color: #fff;
@@ -65,13 +65,9 @@ details summary {
   margin-bottom: 10px;
 }
 
-.options {
-  margin-bottom: 10px;
-}
-
-.options label {
-  font-size: 14px;
-  color: #555;
+/* Container to center the button */
+.btn-container {
+  text-align: center;
 }
 
 .btn {
